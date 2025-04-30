@@ -1,0 +1,14 @@
+from google.colab import drive
+drive.mount('/content/drive')
+
+zip_path = "/content/drive/MyDrive/images.zip"
+extract_to = "/content/drive/MyDrive/images"
+
+!git clone https://github.com/ultralytics/ultralytics.git
+!pip install -q ultralytics
+
+!yolo detect train data="/content/drive/MyDrive/images/images/sample_data.yaml" model=yolo11s.pt epochs=50
+
+!yolo detect predict model="/content/runs/detect/train3/weights/best.pt" source="/content/mil_test.mp4" save=True
+
+
